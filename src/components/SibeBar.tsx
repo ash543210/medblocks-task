@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { Home, UserPlus, Terminal, Users, Info } from "lucide-react";
+import { Home, UserPlus, Terminal, Users } from "lucide-react";
 
 const navItems = [
   { name: "Home", href: "/", icon: Home },
