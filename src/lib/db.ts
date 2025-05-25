@@ -1,13 +1,17 @@
+// app/lib/db.ts
 "use client";
 
-import { PGlite } from "@electric-sql/pglite";
+import { PGliteWorker } from "@electric-sql/pglite/worker";
 
-let db: PGlite | null = null;
+let db: PGliteWorker | null = null;
 
-export async function getDB(): Promise<PGlite> {
+export async function getDB(): Promise<PGliteWorker> {
   if (!db) {
-    // Use IndexedDB for persistence in the browser
-    db = new PGlite("idb://patients");
+    db = new PGliteWorker(
+      new Worker(new URL("./my-pglite-worker", import.meta.url), {
+        type: "module",
+      })
+    );
 
     await db.exec(`
       CREATE TABLE IF NOT EXISTS patients (

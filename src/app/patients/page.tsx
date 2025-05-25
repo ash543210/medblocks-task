@@ -3,9 +3,11 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { usePatients } from "@/hooks/usePatients";
 import { CircularProgress } from "@mui/material";
+import { useSyncPatients } from "@/hooks/useSyncPatients";
 
 export default function PatientsPage() {
   const { data, isLoading, isError } = usePatients();
+  useSyncPatients(); // This will keep data in sync across tabs
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 80 },

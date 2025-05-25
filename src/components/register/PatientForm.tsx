@@ -63,7 +63,6 @@ export default function PatientForm() {
       onSuccess: handleSuccess,
       onError: handleError,
     });
-    registerPatient(formData);
   };
 
   return (
